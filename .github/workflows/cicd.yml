@@ -1,0 +1,26 @@
+name: continous deivery github actions
+on:
+  workflow_dispatch: 
+
+jobs:
+
+  code:
+    runs-on: ubuntu-latest
+    steps:
+      - name: code write
+        run: echo "code here"
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: builds code
+        run: echo "code build"
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: run tests
+        run: echo "runs tests"
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: deploys
+        run: echo "deploying"
