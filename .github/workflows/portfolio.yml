@@ -1,0 +1,36 @@
+name: portfolio
+on:
+    push:
+        branches: [main]
+    workflow_dispatch: 
+permissions:
+    pages: write
+    id-token: write
+    contents: read
+    
+jobs:
+    deploy:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Deploy portfolio website to github pages
+              uses: actions/checkout@v4
+
+            - name: Configure Pages
+              uses: actions/configure-pages@v4
+
+            - name: Deploy artificats (static files)
+              uses: actions/upload-artifact@v4
+
+            - name: Deploy to github pages
+              uses: actions/deploy-pages@v4
+            
+            - name: Get URL
+              run: echo "The deployment URL is ${{ steps.deployment.outputs.page_url }}"
+
+            
+            
+
+
+
+
+    

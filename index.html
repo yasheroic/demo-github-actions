@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>YASHEROIC PROD-CLUSTER</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <style>
+    body {
+      margin: 0;
+      background-color: #0f172a;
+      color: #e2e8f0;
+      font-family: 'Fira Code', monospace;
+    }
+
+    header {
+      background: #111827;
+      padding: 20px;
+      border-bottom: 1px solid #1f2937;
+    }
+
+    h1 {
+      margin: 0;
+      color: #22d3ee;
+      font-size: 20px;
+    }
+
+    .status {
+      margin-top: 8px;
+      font-size: 14px;
+      color: #10b981;
+    }
+
+    .container {
+      padding: 30px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: #111827;
+      padding: 20px;
+      border-radius: 8px;
+      border: 1px solid #1f2937;
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      border-color: #22d3ee;
+      transform: translateY(-5px);
+    }
+
+    .card h3 {
+      margin-top: 0;
+      color: #22d3ee;
+    }
+
+    .container-card {
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .terminal {
+      background: black;
+      color: #10b981;
+      padding: 15px;
+      font-size: 13px;
+      height: 150px;
+      overflow-y: auto;
+      border-radius: 6px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      border-top: 1px solid #1f2937;
+      margin-top: 30px;
+      font-size: 12px;
+      color: #64748b;
+    }
+
+    .button {
+      background: #22d3ee;
+      color: black;
+      padding: 8px 12px;
+      border-radius: 4px;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>YASH-SHAW-PROD-CLUSTER v2.3.1</h1>
+  <div class="status">Status: 🟢 Healthy | Region: Kolkata-IND-01 | Uptime: <span id="uptime"></span></div>
+</header>
+
+<div class="container">
+
+  <!-- Overview -->
+  <div class="card">
+    <h3>📊 Cluster Overview</h3>
+    <p>Active Projects: 12</p>
+    <p>Deployments: 47</p>
+    <p>Tech Containers: 18</p>
+    <p>Security Mode: Enabled 🔐</p>
+  </div>
+
+  <!-- Containers -->
+  <div class="card">
+    <h3>🐳 Running Containers</h3>
+    <div class="container-card">
+      frontend-react: Running (Port 3000)<br>
+      node-api: Running (Port 5000)<br>
+      postgres-db: Healthy (Port 5432)<br>
+      docker-engine: Active<br>
+      ai-agent: Deployed<br>
+      vapt-suite: Secured 🔐
+    </div>
+  </div>
+
+  <!-- Pipeline -->
+  <div class="card">
+    <h3>🚀 CI/CD Pipeline</h3>
+    Build ✅<br>
+    Test ✅<br>
+    Deploy ✅<br>
+    Scale 🚀<br><br>
+    <small>Frontend → Full Stack → Security → AI Automation</small>
+  </div>
+
+  <!-- Monitoring -->
+  <div class="card">
+    <h3>📈 Monitoring</h3>
+    <canvas id="statsChart"></canvas>
+  </div>
+
+  <!-- Logs -->
+  <div class="card">
+    <h3>📜 System Logs</h3>
+    <div class="terminal" id="logs"></div>
+  </div>
+
+  <!-- Resume -->
+  <div class="card">
+    <h3>🔐 Secrets</h3>
+    kubectl get secrets<br><br>
+    resume-prod.yaml<br>
+    <a href="#" class="button">Download Resume</a>
+  </div>
+
+</div>
+
+<footer>
+  © 2026 Yash Shaw | DevOps Control Panel Portfolio
+</footer>
+
+<script>
+  // Uptime Counter
+  const startDate = new Date("2019-01-01");
+  const now = new Date();
+  const diffYears = now.getFullYear() - startDate.getFullYear();
+  document.getElementById("uptime").innerText = diffYears + "+ Years";
+
+  // Logs Animation
+  const logs = [
+    "[INFO] 2024 - Organized Cloud Conference - 2700 Participants",
+    "[SECURITY] Kavach '23 Grand Finalist",
+    "[DEPLOY] Launched Security Training Program",
+    "[CI] Docker Multi-App Repo Published",
+    "[AI] Automated VAPT Report Agent Built",
+  ];
+
+  let logIndex = 0;
+  const logContainer = document.getElementById("logs");
+
+  function addLog() {
+    if (logIndex < logs.length) {
+      logContainer.innerHTML += logs[logIndex] + "<br>";
+      logContainer.scrollTop = logContainer.scrollHeight;
+      logIndex++;
+    }
+  }
+
+  setInterval(addLog, 1200);
+
+  // Chart
+  const ctx = document.getElementById('statsChart');
+  new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: ['2021', '2022', '2023', '2024', '2025'],
+      datasets: [{
+        label: 'Deployments',
+        data: [5, 12, 20, 35, 47],
+        borderColor: '#22d3ee',
+        backgroundColor: 'rgba(34,211,238,0.1)',
+        fill: true
+      }]
+    },
+    options: {
+      plugins: {
+        legend: {
+          labels: {
+            color: '#e2e8f0'
+          }
+        }
+      },
+      scales: {
+        x: {
+          ticks: { color: '#e2e8f0' }
+        },
+        y: {
+          ticks: { color: '#e2e8f0' }
+        }
+      }
+    }
+  });
+</script>
+
+</body>
+</html>
