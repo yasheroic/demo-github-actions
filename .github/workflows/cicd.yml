@@ -1,6 +1,17 @@
 name: continous deivery github actions
 on:
-  workflow_dispatch: 
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: Select the environment where you want to run
+        default: 'dev'
+        required: true
+        type: choice
+        options:
+          - dev
+          - prod
+          - staging
+          
 
 jobs:
 
@@ -22,6 +33,7 @@ jobs:
       - name: run tests
         run: echo "runs tests"
   deploy:
+    if: inputs.environment == 'dev'
     needs: [code,build,test]
     runs-on: ubuntu-latest
     steps:
